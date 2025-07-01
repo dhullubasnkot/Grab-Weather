@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import axios from "axios";
 
@@ -13,7 +12,9 @@ export default function App() {
     setError("");
     setLoading(true);
     try {
-      const res = await axios.post("http://localhost:4000/api/weather", { city });
+      const res = await axios.post("http://localhost:4000/api/weather", {
+        city,
+      });
       setWeather(res.data);
     } catch (err) {
       setError(err.response?.data?.error || "Network error");
@@ -28,16 +29,21 @@ export default function App() {
         type="text"
         placeholder="City name"
         value={city}
-        onChange={e => setCity(e.target.value)}
+        onChange={(e) => setCity(e.target.value)}
         style={{ width: "100%", padding: "6px", boxSizing: "border-box" }}
       />
-      <button onClick={getWeather} style={{ margin: "8px 0", width: "100%", padding: "6px" }}>
+      <button
+        onClick={getWeather}
+        style={{ margin: "8px 0", width: "100%", padding: "6px" }}
+      >
         {loading ? "Loading..." : "Get Weather"}
       </button>
       {error && <div style={{ color: "red" }}>{error}</div>}
       {weather && (
         <div style={{ marginTop: "12px" }}>
-          <div><strong>{weather.name}</strong></div>
+          <div>
+            <strong>{weather.name}</strong>
+          </div>
           <div>🔆 {weather.weather[0].main}</div>
           <div>🌡️ {weather.main.temp}°C</div>
           <div>💧 Humidity: {weather.main.humidity}%</div>
@@ -47,3 +53,4 @@ export default function App() {
     </div>
   );
 }
+//app.jsx
