@@ -15,3 +15,4 @@ export async function fetchWeather(req, res) {
     res.status(500).json({ error: err.response?.data?.message || err.message });
   }
 }
+//controller
